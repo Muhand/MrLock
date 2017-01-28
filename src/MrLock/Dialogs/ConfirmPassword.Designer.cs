@@ -59,7 +59,7 @@
             this.btn_login.Name = "btn_login";
             this.btn_login.Size = new System.Drawing.Size(149, 46);
             this.btn_login.TabIndex = 2;
-            this.btn_login.Text = "Login";
+            this.btn_login.Text = "Confirm";
             this.btn_login.UseVisualStyleBackColor = true;
             this.btn_login.Click += new System.EventHandler(this.btn_login_Click);
             // 
@@ -85,7 +85,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "ConfirmPassword";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Login";
+            this.Text = "Confirm Password";
             this.TopMost = true;
             this.ResumeLayout(false);
             this.PerformLayout();

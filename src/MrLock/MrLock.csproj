@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\enums.cs" />
     <Compile Include="Dialogs\ConfirmPassword.cs">
       <SubType>Form</SubType>
     </Compile>

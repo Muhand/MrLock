@@ -12,6 +12,8 @@ namespace MrLock.Dialogs
 {
     public partial class ConfirmPassword : Form
     {
+        public bool pwConfirmed = false;
+
         public ConfirmPassword()
         {
             InitializeComponent();
@@ -27,12 +29,15 @@ namespace MrLock.Dialogs
                 MessageBox.Show("Looks like the password you entered doesn't match the correct password.",
                     "Invalid Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
+            {
+                pwConfirmed = true;
                 this.Close();                               //Otherwise just close out this window
+            }
         }
 
         private void btn_exit_Click(object sender, EventArgs e)
         {
-            Environment.Exit(0);
+            this.Close();
         }
     }
 }

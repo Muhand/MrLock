@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.checkBox9 = new System.Windows.Forms.CheckBox();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
@@ -37,13 +38,32 @@
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.unlockTime = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lockTime = new System.Windows.Forms.DateTimePicker();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.preferencesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lockApplicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.enableApplicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.showHideApplicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.activateDeactivateApplicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.exitToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -81,6 +101,7 @@
             this.checkBox4.TabIndex = 5;
             this.checkBox4.Text = "Saturday";
             this.checkBox4.UseVisualStyleBackColor = true;
+            this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
             // 
             // checkBox5
             // 
@@ -134,12 +155,50 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.unlockTime);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.lockTime);
             this.groupBox2.Location = new System.Drawing.Point(245, 28);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(395, 133);
+            this.groupBox2.Size = new System.Drawing.Size(291, 133);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Lock Time";
+            // 
+            // unlockTime
+            // 
+            this.unlockTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.unlockTime.Location = new System.Drawing.Point(162, 48);
+            this.unlockTime.Name = "unlockTime";
+            this.unlockTime.Size = new System.Drawing.Size(112, 22);
+            this.unlockTime.TabIndex = 12;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 52);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(150, 17);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Allow use of computer:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(107, 17);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Lock Computer:";
+            // 
+            // lockTime
+            // 
+            this.lockTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.lockTime.Location = new System.Drawing.Point(119, 17);
+            this.lockTime.Name = "lockTime";
+            this.lockTime.Size = new System.Drawing.Size(112, 22);
+            this.lockTime.TabIndex = 9;
             // 
             // menuStrip1
             // 
@@ -148,7 +207,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(923, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(548, 28);
             this.menuStrip1.TabIndex = 8;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -156,6 +215,8 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.preferencesToolStripMenuItem,
+            this.lockApplicationToolStripMenuItem,
+            this.enableApplicationToolStripMenuItem,
             this.toolStripSeparator1,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -165,27 +226,124 @@
             // preferencesToolStripMenuItem
             // 
             this.preferencesToolStripMenuItem.Name = "preferencesToolStripMenuItem";
-            this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.preferencesToolStripMenuItem.Size = new System.Drawing.Size(210, 26);
             this.preferencesToolStripMenuItem.Text = "Preferences";
             this.preferencesToolStripMenuItem.Click += new System.EventHandler(this.preferencesToolStripMenuItem_Click);
+            // 
+            // lockApplicationToolStripMenuItem
+            // 
+            this.lockApplicationToolStripMenuItem.Name = "lockApplicationToolStripMenuItem";
+            this.lockApplicationToolStripMenuItem.Size = new System.Drawing.Size(210, 26);
+            this.lockApplicationToolStripMenuItem.Text = "Lock Application";
+            this.lockApplicationToolStripMenuItem.Click += new System.EventHandler(this.lockApplicationToolStripMenuItem_Click);
+            // 
+            // enableApplicationToolStripMenuItem
+            // 
+            this.enableApplicationToolStripMenuItem.Enabled = false;
+            this.enableApplicationToolStripMenuItem.Name = "enableApplicationToolStripMenuItem";
+            this.enableApplicationToolStripMenuItem.Size = new System.Drawing.Size(210, 26);
+            this.enableApplicationToolStripMenuItem.Text = "Enable Application";
+            this.enableApplicationToolStripMenuItem.Click += new System.EventHandler(this.enableApplicationToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(178, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(207, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(210, 26);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
+            this.notifyIcon1.Text = "MrLock";
+            this.notifyIcon1.Visible = true;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showHideApplicationToolStripMenuItem,
+            this.activateDeactivateApplicationToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.exitToolStripMenuItem1});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.ShowImageMargin = false;
+            this.contextMenuStrip1.Size = new System.Drawing.Size(266, 88);
+            // 
+            // showHideApplicationToolStripMenuItem
+            // 
+            this.showHideApplicationToolStripMenuItem.Name = "showHideApplicationToolStripMenuItem";
+            this.showHideApplicationToolStripMenuItem.Size = new System.Drawing.Size(265, 26);
+            this.showHideApplicationToolStripMenuItem.Text = "Show/Hide Application";
+            this.showHideApplicationToolStripMenuItem.Click += new System.EventHandler(this.showHideApplicationToolStripMenuItem_Click);
+            // 
+            // activateDeactivateApplicationToolStripMenuItem
+            // 
+            this.activateDeactivateApplicationToolStripMenuItem.Name = "activateDeactivateApplicationToolStripMenuItem";
+            this.activateDeactivateApplicationToolStripMenuItem.Size = new System.Drawing.Size(265, 26);
+            this.activateDeactivateApplicationToolStripMenuItem.Text = "Activate/Deactivate Application";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(262, 6);
+            // 
+            // exitToolStripMenuItem1
+            // 
+            this.exitToolStripMenuItem1.Name = "exitToolStripMenuItem1";
+            this.exitToolStripMenuItem1.Size = new System.Drawing.Size(265, 26);
+            this.exitToolStripMenuItem1.Text = "Exit";
+            this.exitToolStripMenuItem1.Click += new System.EventHandler(this.exitToolStripMenuItem1_Click);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Location = new System.Drawing.Point(12, 167);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(524, 147);
+            this.groupBox3.TabIndex = 11;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Config";
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 371);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(548, 25);
+            this.statusStrip1.TabIndex = 12;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(92, 20);
+            this.toolStripStatusLabel1.Text = "Not Running";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(407, 320);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(129, 48);
+            this.button1.TabIndex = 13;
+            this.button1.Text = "Start Running";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(923, 550);
+            this.ClientSize = new System.Drawing.Size(548, 396);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
@@ -194,11 +352,17 @@
             this.MaximizeBox = false;
             this.Name = "MainWindow";
             this.Text = "MrLock";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -220,6 +384,22 @@
         private System.Windows.Forms.ToolStripMenuItem preferencesToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.DateTimePicker lockTime;
+        private System.Windows.Forms.DateTimePicker unlockTime;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private System.Windows.Forms.ToolStripMenuItem enableApplicationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem lockApplicationToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem showHideApplicationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem activateDeactivateApplicationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem1;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.Button button1;
     }
 }
 
