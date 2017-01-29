@@ -59,5 +59,15 @@ namespace MrLock.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] Days {
+            get {
+                object obj = ResourceManager.GetObject("Days", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

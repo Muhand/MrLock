@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MrLock.Classes;
 using MrLock.Dialogs;
+using System.Data.OleDb;
 
 namespace MrLock
 {
@@ -23,25 +24,22 @@ namespace MrLock
         private Classes.enums.ApplicationState applicationState
         {
             get { return _applicationState; }
-            set
-            {
-                _applicationState = value;
-            }
+            set { _applicationState = value; }
         }
 
         private Classes.enums.ApplicationStatus applicationStatus
         {
-            get { return _applicationStatus;}
+            get { return _applicationStatus; }
             set
             {
                 _applicationStatus = value;
                 switch (value)
                 {
                     case enums.ApplicationStatus.NotRunning:
-                        toolStripStatusLabel1.Text = "Not Running";
+                        toolStripStatusLabel1.Text = "Timer is Not Running";
                         break;
                     case enums.ApplicationStatus.Running:
-                        toolStripStatusLabel1.Text = "Running";
+                        toolStripStatusLabel1.Text = "Timer is Running";
                         break;
                 }
             }
@@ -73,11 +71,33 @@ namespace MrLock
                     disableApplication();
             }
 
+            //Show a notification 
             notifyIcon1.Icon = SystemIcons.Application;
             notifyIcon1.BalloonTipTitle = "MrLock is giving you example of notification.";
             notifyIcon1.BalloonTipText = @"Here you will see notifications when you have 30 minutes 
 left until the computer gets automatically locked.";
             notifyIcon1.ShowBalloonTip(1000);
+
+            //Connect to db
+            OleDbConnection connection = new OleDbConnection(); //Create a new connection object
+            connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\github\MrLock\src\MrLock\bin\Debug\Resources\Days.accdb;
+Jet OLEDB:Database Password=test;"; //Declare the connection string
+
+            //Try to connect
+            try
+            {
+                connection.Open();                                                          //Open the connection
+                toolStripStatusLabel2.Text = "Connection was Successful.";
+            }
+            catch (OleDbException ex)
+            {
+                toolStripStatusLabel2.Text = "Connection was Unsuccessful.";
+                toolStripStatusLabel2.Click += (ss, ee) => MessageBox.Show("This is the error\n"+ex.Message,"Error", 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
+
+            connection.Close();                                                         //Close the connection
         }
 
         private void preferencesToolStripMenuItem_Click(object sender, EventArgs e)
