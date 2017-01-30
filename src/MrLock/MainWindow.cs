@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MrLock.Classes;
 using MrLock.Dialogs;
-using System.Data.OleDb;
+using System.Data.SqlClient;
 
 namespace MrLock
 {
@@ -52,6 +52,8 @@ namespace MrLock
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'daysDataSet1.Alarm' table. You can move, or remove it, as needed.
+            this.alarmTableAdapter.Fill(this.daysDataSet1.Alarm);
             //Properties.Settings.Default.Reset();                                            //Reset settings; THIS IS JUST FOR DEBUGING
 
             //Check if there is no password (indicates program was launched for the first time)
@@ -78,26 +80,29 @@ namespace MrLock
 left until the computer gets automatically locked.";
             notifyIcon1.ShowBalloonTip(1000);
 
-            //Connect to db
-            OleDbConnection connection = new OleDbConnection(); //Create a new connection object
-            connection.ConnectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\github\MrLock\src\MrLock\bin\Debug\Resources\Days.accdb;
-Jet OLEDB:Database Password=test;"; //Declare the connection string
+            ////Connect to db
+            //SqlConnection connection = new SqlConnection();
+            //connection.ConnectionString = @"Data Source=.\SQLEXPRESS;
+            //              AttachDbFilename=/Databases/Days.mdf;
+            //              Integrated Security=True;
+            //              Connect Timeout=30;
+            //              User Instance=True"; //Declare the connection string
 
-            //Try to connect
-            try
-            {
-                connection.Open();                                                          //Open the connection
-                toolStripStatusLabel2.Text = "Connection was Successful.";
-            }
-            catch (OleDbException ex)
-            {
-                toolStripStatusLabel2.Text = "Connection was Unsuccessful.";
-                toolStripStatusLabel2.Click += (ss, ee) => MessageBox.Show("This is the error\n"+ex.Message,"Error", 
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            
+            ////Try to connect
+            //try
+            //{
+            //    connection.Open();                                                          //Open the connection
+            //    toolStripStatusLabel2.Text = "Connection was Successful.";
+            //}
+            //catch (SqlException ex)
+            //{
+            //    toolStripStatusLabel2.Text = "Connection was Unsuccessful.";
+            //    toolStripStatusLabel2.Click += (ss, ee) => MessageBox.Show("This is the error\n" + ex.Message, "Error",
+            //        MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
 
-            connection.Close();                                                         //Close the connection
+
+            //connection.Close();                                                         //Close the connection
         }
 
         private void preferencesToolStripMenuItem_Click(object sender, EventArgs e)

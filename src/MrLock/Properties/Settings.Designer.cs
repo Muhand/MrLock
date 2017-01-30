@@ -34,5 +34,16 @@ namespace MrLock.Properties {
                 this["password"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\Databases\\Day" +
+            "s.mdf;Integrated Security=True")]
+        public string DaysConnectionString {
+            get {
+                return ((string)(this["DaysConnectionString"]));
+            }
+        }
     }
 }
